@@ -1,63 +1,45 @@
-# Getting Started
+# ts-cap-project
 
-Welcome to your new project.
+Project using CAP and TS with Fiori Elements
 
-It contains these folders and files:
+📦 Repository: [https://github.com/abbielara20/cap-router-project-template](https://github.com/abbielara20/cap-router-project-template)
 
-File or Folder       | Purpose
----------------------|-------------------------------
-`.pipeline/`         | Pipeline deployment configuration
-`app/`               | Router and content for UI frontends goes here
-`db/`                | Your domain models and data
-`srv/`               | Your service models and code
-`setup/`             | Setup files for completing project setup
-`package.json`       | Project metadata and configuration
-`readme.md`          | This getting started guide
-`Jenkinsfile`        | Jenkins pipeline definition
+---
 
-## ⚡️ Quick Start
+## 🧪 Running the App
 
-1. Clone your repo from this template
-2. Run: `node setup/finalise-setup.js --clean`
-3. Commit and push
-4. Run: `cds watch` to start developing
+To start your CAP application locally:
 
-
-## 🚀 Project Setup
-
-This project was generated from a template. To finalize your project setup, run the setup script from the root of the folder.  You can leave off the --clean argument if you don't want the script to clean up all the setup files.  You can delete the setup/ folder manually.
-
-```
-node setup/finalise-setup.js --clean
+```bash
+npm install
+cds watch
 ```
 
-### 🛠 Setup Options
+---
 
-You have **two ways** to run the setup script:
+## 📂 Project Structure
 
-#### 1. Config File Mode (automated)
+Folder | Purpose  
+--|--  
+`app/` | Router and UI frontends  
+`srv/` | Service definitions and logic  
+`db/`  | Data models and persistence  
+`docs/` | Project documentation  
+`.pipeline/` | CI/CD configuration
 
-If you'd prefer to avoid interactive prompts, you can create a `setup-config.json` file in the project root with the following structure:
-```json
-{
-  "APP_ID": "my-new-cap-project",
-  "DESCRIPTION": "My new CAP project",
-  "REPOSITORY": "zespri-international-ltd/my-new-cap-project"
-}
-```
+---
 
-A default example already exists. When this file is present, the script will automatically use the values it contains to complete setup without prompting you.
+## 🧭 Common Commands
 
-#### 2. Interactive Mode (default)
+Command | Description  
+--|--  
+`cds watch` | Run the app in dev mode with live reload  
+`cds build` | Build deployable artifacts  
+`npm test` | Run project tests
 
-If no `setup-config.json` file is present (see option 1. automated), you'll be prompted to provide the necessary values:
+---
 
-- `APP_ID` – your application ID (no spaces)
-- `DESCRIPTION` – a short description of your project
-- `REPOSITORY` – GitHub repository in the format `org/repo`
+## 📘 Learn More
 
-You can also force prompts by running:
-
-```
-node setup/finalise-setup.js --prompt --clean
-```
+- [CAP Documentation](https://cap.cloud.sap/docs/)
+- [SAP Community](https://community.sap.com/topics/cloud-application-programming)

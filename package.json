@@ -1,30 +1,50 @@
 {
-  "name": "__APP_ID__",
+  "name": "ts-cap-project",
   "version": "1.0.0",
-  "description": "__DESCRIPTION__",
-  "repository": "__REPOSITORY__",
+  "description": "Project using CAP and TS with Fiori Elements",
+  "repository": "abbielara20/cap-router-project-template",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@cap-js/hana": "^1",
     "@sap/cds": "^8",
-    "express": "^4",
     "@sap/xssec": "^4",
-    "@cap-js/hana": "^1"
+    "express": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.9.0",
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^8"
+    "@sap/cds-dk": "^8",
+    "@types/node": "^22.0.0",
+    "typescript": "^5",
+    "@cap-js/cds-typer": ">=0.1"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch": "cds-tsx w"
   },
   "cds": {
-    "requires": {
-      "auth": "xsuaa"
-    },
     "sql": {
       "native_hana_associations": false
+    },
+    "requires": {
+      "[production]": {
+        "db": "hana",
+        "auth": "xsuaa"
+      },
+      "auth": {
+        "[development]": {
+          "kind": "dummy"
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      }
     }
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
   }
 }

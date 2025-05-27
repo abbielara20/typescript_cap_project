@@ -1,7 +1,7 @@
 _schema-version: 3.3.0
-ID: __APP_ID__
+ID: ts-cap-project
 version: 1.0.0
-description: "__DESCRIPTION__"
+description: "Project using CAP and TS with Fiori Elements"
 parameters:
   enable-parallel-deployments: true
 build-parameters:
@@ -11,7 +11,7 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
-  - name: __APP_ID__-srv
+  - name: ts-cap-project-srv
     type: nodejs
     path: gen/srv
     parameters:
@@ -24,18 +24,18 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: __APP_ID__-auth
-      - name: __APP_ID__-db
+      - name: ts-cap-project-auth
+      - name: ts-cap-project-db
 
-  - name: __APP_ID__-db-deployer
+  - name: ts-cap-project-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: __APP_ID__-db
+      - name: ts-cap-project-db
 
-  - name: __APP_ID__
+  - name: ts-cap-project
     type: approuter.nodejs
     path: app/router
     parameters:
@@ -49,7 +49,7 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
-      - name: __APP_ID__-auth
+      - name: ts-cap-project-auth
     provides:
       - name: app-api
         properties:
@@ -57,16 +57,16 @@ modules:
           app-uri: ${default-uri}
 
 resources:
-  - name: __APP_ID__-auth
+  - name: ts-cap-project-auth
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: __APP_ID__-${org}-${space}
+        xsappname: ts-cap-project-${org}-${space}
         tenant-mode: dedicated
-  - name: __APP_ID__-db
+  - name: ts-cap-project-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana

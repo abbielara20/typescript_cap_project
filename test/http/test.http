@@ -1,0 +1,12 @@
+# GET http://localhost:4004/odata/v4/catalog/fnCrud(action='create')
+
+
+# GET http://localhost:4004/odata/v4/catalog/Authors
+
+PATCH http://localhost:4004/odata/v4/catalog/Authors(c171e90f-6f00-4ac5-9511-1727284ccecd)
+Content-Type: application/json
+
+{
+    "name": "Juan Dela Cruz",
+    "biography": "test"
+}
