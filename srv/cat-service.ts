@@ -7,8 +7,7 @@ export class CatalogService extends cds.ApplicationService {
 
         const { uuid } = cds.utils;
         const helper = new Helper();
-        // const { fnGetTextBundle } = new TextBundle();
-        // const bundle = fnGetTextBundle("en");
+        const bundle = helper.fnGetTextBundle("en");
 
         this.on('fnCrud', async req => {
             const { action } = req.data;
@@ -53,23 +52,26 @@ export class CatalogService extends cds.ApplicationService {
                     result = await helper.fnDelete(entity, where);
                     break;
             }
-            // const msg = bundle.getText("SUCCESS_MESSAGE", [
-            //     JSON.stringify(result)
-            // ]);
-            return result;
+            const msg = bundle.getText("SUCCESS_MESSAGE", [
+                JSON.stringify(result)
+            ]);
+            return msg;
         })
 
         this.on('READ', 'Authors', async () => {
-            const where = {
-                name: "Juan Dela Cruz"
-            };
-            const result = await helper.fnRead('Authors', where);
-            return result;
+            const result = await helper.fnRead('Authors');
+            const msg = bundle.getText("SUCCESS_MESSAGE", [
+                JSON.stringify(result)
+            ]);
+            return msg;
         })
 
         this.on('CREATE', 'Authors', async req => {
             const result = await helper.fnCreate('Authors', [req.data]);
-            return result;
+            const msg = bundle.getText("SUCCESS_MESSAGE", [
+                JSON.stringify(result)
+            ]);
+            return msg;
         })
 
         this.on('UPDATE', 'Authors', async req => {
@@ -77,7 +79,10 @@ export class CatalogService extends cds.ApplicationService {
                 ID: req.params
             };
             const result = await helper.fnUpdate('Authors', where, req.data);
-            return result;
+            const msg = bundle.getText("SUCCESS_MESSAGE", [
+                JSON.stringify(result)
+            ]);
+            return msg;
         })
 
 
