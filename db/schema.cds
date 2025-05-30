@@ -9,6 +9,7 @@ entity Books : cuid {
   author          : Association to Authors;
   publisher       : Association to Publishers;
   reviews         : Association to Reviews;
+  startDate       : DateTime;
 }
 
 @assert.unique: {name: [name]}
@@ -31,6 +32,7 @@ entity Customers : cuid {
 entity Reviews : cuid {
   reviewDate : Date;
   message    : String(200);
+  rating     : Integer;
   customer   : Association to Customers;
   books      : Association to many Books
                  on books.reviews = $self;
@@ -42,4 +44,27 @@ entity Publishers : cuid {
   address : String(200);
   books   : Association to many Books
               on books.publisher = $self;
+}
+
+
+// For Calendar
+entity People : cuid {
+  name         : String(200);
+  role         : String(200);
+  appointments : Composition of many Appointments
+                   on appointments.people = $self;
+}
+
+entity Appointments : cuid {
+  start  : DateTime;
+  end    : DateTime;
+  title  : String(200);
+  info   : String(200);
+  type   : String(200);
+  people : Association to People;
+}
+
+entity Startdate {
+  key id    : Integer;
+      start : DateTime;
 }

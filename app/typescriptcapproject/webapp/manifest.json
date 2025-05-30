@@ -49,7 +49,8 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.f": {}
       }
     },
     "contentDensities": {
@@ -86,12 +87,17 @@
         {
           "pattern": ":?query:",
           "name": "BooksList",
-          "target": "BooksList"
+          "target": [
+            "BooksList"
+          ]
         },
         {
-          "pattern": "Books({key}):?query:",
           "name": "BooksObjectPage",
-          "target": "BooksObjectPage"
+          "pattern": "Books({BooksKey}):?query:",
+          "target": [
+            "BooksList",
+            "BooksObjectPage"
+          ]
         }
       ],
       "targets": {
@@ -102,7 +108,6 @@
           "options": {
             "settings": {
               "contextPath": "/Books",
-              "variantManagement": "Page",
               "navigation": {
                 "Books": {
                   "detail": {
@@ -110,10 +115,22 @@
                   }
                 }
               },
+              "variantManagement": "None",
+              "initialLoad": "Enabled",
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
-                  "tableSettings": {
-                    "type": "ResponsiveTable"
+                  "actions": {
+                    "OpenPage": {
+                      "press": "typescriptcapproject.ext.controller.OpenPage.OpenPage",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": false,
+                      "text": "Open Page",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "DataFieldForAction::CatalogService.EntityContainer::clearRating"
+                      }
+                    }
                   }
                 }
               }
@@ -127,7 +144,21 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Books"
+              "contextPath": "/Books",
+              "content": {
+                "body": {
+                  "sections": {
+                    "PlanningCalendarFragment": {
+                      "template": "typescriptcapproject.ext.fragment.PlanningCalendarFragment",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Reviews"
+                      },
+                      "title": "Planning Calendar"
+                    }
+                  }
+                }
+              }
             }
           }
         }

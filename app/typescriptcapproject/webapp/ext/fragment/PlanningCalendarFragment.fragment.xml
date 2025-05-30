@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" xmlns:unified="sap.ui.unified"> 
+	<VBox id="VBoxID001" core:require="{ handler: 'typescriptcapproject/ext/fragment/PlanningCalendarFragment'}">
+		<Button id="ButtonID001" text="PlanningCalendarFragment" press="handler.onPress" />
+		<PlanningCalendar
+			id="PlanningCalendarID001"
+			startDate="{path: 'startDate'}"
+			rows="{path: '/People'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect=".onAppointmentSelect"
+			showEmptyIntervalHeaders="false"
+			showWeekNumbers="true">
+
+			<rows>
+				<PlanningCalendarRow id="PlanningCalendarRowID001"
+					title="{name}"
+					text="{role}"
+					appointments="{path: 'appointments', templateShareable:false}">
+					<appointments>
+						<unified:CalendarAppointment id="CalendarAppointmentID001"
+							startDate="{start}"
+							endDate="{end}"
+							title="{title}"
+							text="{info}"
+							type="{type}" />
+					</appointments>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+	</VBox>
+</core:FragmentDefinition>

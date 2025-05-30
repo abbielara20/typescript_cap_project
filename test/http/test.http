@@ -1,7 +1,7 @@
 # GET http://localhost:4004/odata/v4/catalog/fnCrud(action='create')
 
 
-GET http://localhost:4004/odata/v4/catalog/Authors
+GET http://localhost:4004/odata/v4/catalog/Books(2cbac978-d1cc-445c-9152-cbc66ae9884c)?$select=startDate&$expand=startDate($select=startDate) 
 
 # PATCH http://localhost:4004/odata/v4/catalog/Authors(c171e90f-6f00-4ac5-9511-1727284ccecd)
 # Content-Type: application/json

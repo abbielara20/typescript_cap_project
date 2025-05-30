@@ -1,11 +1,9 @@
 import cds from '@sap/cds';
 import Helper from '../lib/helper';
-// import TextBundle from '../utils/textBundle'
 
 export class CatalogService extends cds.ApplicationService {
     init() {
 
-        const { uuid } = cds.utils;
         const helper = new Helper();
         const bundle = helper.fnGetTextBundle("en");
 
@@ -14,7 +12,7 @@ export class CatalogService extends cds.ApplicationService {
             let entity: string;
             let entries: object[];
             let where: object;
-            let result: object = {};
+            let result: any;
 
             switch (action) {
                 case "create":
@@ -60,10 +58,7 @@ export class CatalogService extends cds.ApplicationService {
 
         this.on('READ', 'Authors', async () => {
             const result = await helper.fnRead('Authors');
-            const msg = bundle.getText("SUCCESS_MESSAGE", [
-                JSON.stringify(result)
-            ]);
-            return msg;
+            return result;
         })
 
         this.on('CREATE', 'Authors', async req => {
@@ -83,6 +78,17 @@ export class CatalogService extends cds.ApplicationService {
                 JSON.stringify(result)
             ]);
             return msg;
+        })
+
+        this.on('clearRating', async req => {
+            const where = {
+                rating: { "<=": 2 }
+            }
+            const entries = {
+                rating: req.data.rating
+            }
+            await helper.fnUpdate('Reviews', where, entries);
+            return this.read('Books');
         })
 
 

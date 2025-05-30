@@ -13,7 +13,7 @@ export default class HelperClass {
       const tx = cds.tx();
       const query = INSERT.into(entity).entries(entries);
       const result = await tx.run(query).then(tx.commit, tx.rollback)
-      return { result: result };
+      return result;
     } catch (error) {
       console.error("Error encountered in inserting data:", error);
       throw error;
@@ -47,7 +47,7 @@ export default class HelperClass {
         .groupBy(...groupBy)
         .orderBy(...orderBy)
       const result = await cds.run(query);
-      return { result: result };
+      return result;
     } catch (error) {
       console.error("Error encountered in reading data:", error);
       throw error;
@@ -66,7 +66,7 @@ export default class HelperClass {
       const tx = cds.tx();
       const query = UPDATE(entity).set(entries).where(where);
       const result = await tx.run(query).then(tx.commit, tx.rollback)
-      return { result: result };
+      return result;
     } catch (error) {
       console.error("Error encountered in updating data:", error);
       throw error;
@@ -85,7 +85,7 @@ export default class HelperClass {
       const tx = cds.tx();
       const query = UPSERT.into(entity).entries(entries);
       const result = await tx.run(query).then(tx.commit, tx.rollback)
-      return { result: result };
+      return result;
     } catch (error) {
       console.error(
         "Error encountered in updating or inserting data:",
@@ -106,7 +106,7 @@ export default class HelperClass {
       const tx = cds.tx();
       const query = DELETE.from(entity).where(where);
       const result = await tx.run(query).then(tx.commit, tx.rollback)
-      return { result: result };
+      return result;
     } catch (error) {
       console.error("Error encountered in deleting data:", error);
       throw error;
